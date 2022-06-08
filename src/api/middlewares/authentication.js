@@ -1,6 +1,5 @@
 const { tokenVerify } = require("../utils/tokenService");
 
-
 module.exports = (req, _res, next) => {
   try {
     const { authorization } = req.headers;

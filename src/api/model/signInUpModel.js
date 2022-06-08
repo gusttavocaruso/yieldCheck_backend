@@ -5,10 +5,10 @@ const createUser = async (name, email, password) => {
   const { insertedId } = await db
     .collection('users')
     .insertOne({
-      name, email, password, role: 'user',
+      name, email, password
     });
 
-  return { name, email, role: 'user', _id: insertedId };
+  return { name, email, _id: insertedId };
 };
 
 const findUserByEmail = async (email) => {

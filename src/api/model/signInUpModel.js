@@ -11,7 +11,7 @@ const createUser = async ({ name, email, password }) => {
   return { name, email, _id: insertedId };
 };
 
-const findUserByEmail = async (email) => {
+const findUserByEmail = async ({ email }) => {
   const db = await connect();
   const userMail = await db
     .collection('users')

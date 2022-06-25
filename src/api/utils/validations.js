@@ -13,6 +13,11 @@ const userEntitiesVdt = (newUser) => {
   if (error) throw errHandler(404, error.message);
 }
 
+const userAlreadyExists = (user) => {
+  if (user) throw errHandler(409, 'Email já utilizado em outro usuário');
+}
+
 module.exports = {
   userEntitiesVdt,
+  userAlreadyExists,
 };

@@ -14,8 +14,8 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const logKeys = req.body;
-    const token = await service.userSearch(logKeys);
+    const logsKey = req.body;
+    const token = await service.userSearch(logsKey);
 
     return res.status(200).json(token);
   } catch (error) {

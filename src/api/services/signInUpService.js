@@ -10,15 +10,18 @@ const userRegister = async (newUser) => {
   return { user };
 };
 
-const userSearch = async (logsKey) => {
+const userLogin = async (logsKey) => {
   const user = await model.findUserByEmail(logsKey);
-  const { password: _password, ...userLessPass } = user;
 
+  validate.userKeysVdt(logsKey, user);
+
+  const { password: _password, ...userLessPass } = user;
   const tokenId = tokenGenerate(userLessPass);
+
   return { token: tokenId };
 };
 
 module.exports = {
   userRegister,
-  userSearch,
+  userLogin,
 };

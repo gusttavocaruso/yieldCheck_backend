@@ -1,13 +1,17 @@
-const { firstKMRegister, searchById, updateData } = require('../model/userInModel');
+const model = require('../model/userInModel');
+const validate = require('../utils/validations');
 
-const firstInService = async (bodyPayload) => {
-  const id = await firstKMRegister(bodyPayload);
+const firstInService = async (bodyPayload, token) => {
+  console.log('>>', token)
+  validate.firstInVdt(await model.searchByOwner(token));
+
+  const id = await model.firstKMRegister(bodyPayload, token);
 
   return { id };
 };
 
 const inputService = async (id, bodyPayload) => {
-  const previousData = await searchById(id);
+  const previousData = await model.searchById(id);
 
   const actualKM = bodyPayload.odometerKM;
   const previousKM = previousData.odometerKM;
@@ -16,7 +20,7 @@ const inputService = async (id, bodyPayload) => {
   const deltaKM = actualKM - previousKM;
   const kmPerL = Math.round(deltaKM / previousL *100)/100;
 
-  await updateData(id, previousData, bodyPayload, kmPerL);
+  await model.updateData(id, previousData, bodyPayload, kmPerL);
   return kmPerL;
 };
 

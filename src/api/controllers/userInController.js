@@ -3,9 +3,12 @@ const { firstInService, inputService, calcYield } = require('../services/userInS
 const firstIn = async (req, res, next) => {
   try {
     const bodyPayload = req.body;
-    const ok = await firstInService(bodyPayload);
+    const token = req.user;
+    const { id } = await firstInService(bodyPayload, token);
 
-    return res.status(201).json(ok);
+    return res.status(201).json(
+      { message: `Primeira interação realizada para ${token.email}`, id}
+    );
   } catch (error) {
     console.log(error.message);
     next(error);

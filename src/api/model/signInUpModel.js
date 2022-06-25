@@ -4,9 +4,7 @@ const createUser = async ({ name, email, password }) => {
   const db = await connect();
   const { insertedId } = await db
     .collection('users')
-    .insertOne({
-      name, email, password
-    });
+    .insertOne({ name, email, password });
 
   return { name, email, _id: insertedId };
 };

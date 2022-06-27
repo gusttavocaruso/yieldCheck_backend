@@ -24,11 +24,12 @@ const searchById = async (id) => {
   return account;
 };
 
-const searchByOwner = async ({ _id }) => {
+const searchByOwner = async ({ email }) => {
   const db = await connect();
   const owner = await db
     .collection('users-yield')
-    .findOne({ owner: { _id: _id } })
+    .findOne({ owner: { email } })
+  console.log(owner);
   return owner;
 }
 

@@ -32,17 +32,17 @@ const searchByOwner = async ({ email }) => {
   return owner;
 }
 
-const updateData = async (id, previousData, newData, kmPerL) => {
+const updateData = async (id, previousSupply, newSupply, kmPerL) => {
   const db = await connect();
   await db.collection('users-yield')
     .updateOne(
       { _id: ObjectId(id) },
       {
         $set: {
-          odometerKM: newData.odometerKM,
-          litersProvided: newData.litersProvided,
-          previousKM: previousData.odometerKM,
-          previousL: previousData.litersProvided,
+          odometerKM: newSupply.odometerKM,
+          litersProvided: newSupply.litersProvided,
+          previousKM: previousSupply.odometerKM,
+          previousL: previousSupply.litersProvided,
         },
         $push: { storyKM: kmPerL },
       }

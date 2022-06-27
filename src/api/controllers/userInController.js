@@ -18,10 +18,10 @@ const firstIn = async (req, res, next) => {
 const newInputs = async (req, res, next) => {
   try {
     const id = req.params;
-    const bodyPayload = req.body;
-    const kmPerL = await inputService(id, bodyPayload);
+    const supplyPayload = req.body;
+    const kmPerL = await inputService(id, supplyPayload);
 
-    return res.status(200).json({ lastSupply: `${kmPerL} KM/L` });
+    return res.status(200).json({ message: `O rendimento atual é de ${kmPerL} KM/L` });
   } catch (error) {
     console.log(error.message);
     next(error);

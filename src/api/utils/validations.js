@@ -1,6 +1,7 @@
 const errHandler = require('./errHandler');
 const userSchema = require('./schemas/userSchema');
 const supplySchema = require('./schemas/supplySchema');
+const idSchema = require('./schemas/idSchema');
 
 const userEntitiesVdt = (newUser) => {
   const { error } = userSchema.validate(newUser);
@@ -31,6 +32,21 @@ const supplyPayloadVdt = (supplyPayload) => {
   if (error) throw errHandler(404, error.message);
 }
 
+const secondSupplyPayloadVdt = (supply, previous) => {
+  supplyPayloadVdt(supply);
+
+  if (!previous) throw errHandler(404, 'errow');
+
+  if (previous.odometerKM >= supply.odometerKM) throw errHandler(
+    404, `Insira uma quilometragem maior que a ultima inserida. (${previous.odometerKM}km)`
+  );
+}
+
+const idValidation = (id) => {
+  const { error } = idSchema.validate(id);
+  if (!id || error) throw errHandler(404, 'Insira um id válido');
+}
+
 module.exports = {
   userEntitiesVdt,
   userAlreadyExists,
@@ -38,4 +54,6 @@ module.exports = {
   tokenVdt,
   firstInVdt,
   supplyPayloadVdt,
+  secondSupplyPayloadVdt,
+  idValidation,
 };

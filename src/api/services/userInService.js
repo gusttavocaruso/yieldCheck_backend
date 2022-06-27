@@ -9,17 +9,18 @@ const firstInService = async (supplyPayload, token) => {
   return id;
 };
 
-const inputService = async (id, bodyPayload) => {
-  const previousData = await model.searchById(id);
+const inputService = async (id, supplyPayload) => {
+  const previousSupply = await model.searchById(id);
+  validate.secondSupplyPayloadVdt(supplyPayload, previousSupply);
 
-  const actualKM = bodyPayload.odometerKM;
-  const previousKM = previousData.odometerKM;
-  const previousL = previousData.litersProvided;
+  const actualKM = supplyPayload.odometerKM;
+  const previousKM = previousSupply.odometerKM;
+  const previousL = previousSupply.litersProvided;
 
   const deltaKM = actualKM - previousKM;
   const kmPerL = Math.round(deltaKM / previousL *100)/100;
 
-  await model.updateData(id, previousData, bodyPayload, kmPerL);
+  await model.updateData(id, previousSupply, supplyPayload, kmPerL);
   return kmPerL;
 };
 

@@ -25,12 +25,14 @@ const inputService = async (id, supplyPayload) => {
 };
 
 const calcYield = async (id) => {
-  const { storyKM } = await searchById(id);
+  const { storyKM } = await model.searchById(id);
 
-  const average = Math.round(storyKM
-    .reduce((acc, km) => acc + km) / storyKM.length *100)/100;
+  const average = `${
+    Math.round(storyKM.reduce((acc, km) => acc + km)
+    / storyKM.length *100)/100
+  } KM/L`;
 
-  return { storyKM, average };
+  return { average, storyKM };
 };
 
 module.exports = {

@@ -31,9 +31,10 @@ const newInputs = async (req, res, next) => {
 const currentStatus = async (req, res, next) => {
   try {
     const id = req.params;
+    const token = req.user;
     const currentYield = await calcYield(id);
 
-    return res.status(200).json(currentYield);
+    return res.status(200).json({ Usuário: token.email, currentYield });
   } catch (error) {
     next(error);
   }

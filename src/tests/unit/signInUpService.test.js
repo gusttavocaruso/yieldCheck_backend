@@ -4,18 +4,19 @@ test('Testa função userRegister recebendo como parâmetro um objeto válido', 
   const userOkMock = {
     name: "Mano Brown",
     email: "brown@gmail.com",
-    password: 1973
+    password: "1973"
   };
 
-   expect(service.userRegister(userOkMock)).toMatchObject({});
+   expect(await service.userRegister(userOkMock)).toMatchObject({});
 });
 
-test('Testa função userRegister recebendo como parâmetro um objeto inválido', () => {
+test('Testa função userRegister recebendo como parâmetro um objeto inválido', async () => {
   const userNOkMock = {
     name: "",
     email: "brownemail.com",
     password: 12
   };
 
-  expect(service.userRegister(userNOkMock)).toThrowError("Some error");
+  expect(await service.userRegister(userNOkMock))
+    .toThrowError('"name" is not allowed to be empty');
 });

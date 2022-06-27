@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/api/server.js",
     "start": "node ./src/api/server.js",
-    "test": "jest"
+    "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "author": "Gustavo Caruso",
   "license": "ISC",

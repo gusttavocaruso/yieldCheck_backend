@@ -1,13 +1,12 @@
 const model = require('../model/userInModel');
 const validate = require('../utils/validations');
 
-const firstInService = async (bodyPayload, token) => {
-  console.log('>>', token)
+const firstInService = async (supplyPayload, token) => {
+  validate.supplyPayloadVdt(supplyPayload);
   validate.firstInVdt(await model.searchByOwner(token));
 
-  const id = await model.firstKMRegister(bodyPayload, token);
-
-  return { id };
+  const id = await model.firstKMRegister(supplyPayload, token);
+  return id;
 };
 
 const inputService = async (id, bodyPayload) => {

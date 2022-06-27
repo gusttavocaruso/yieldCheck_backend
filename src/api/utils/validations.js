@@ -1,5 +1,6 @@
 const errHandler = require('./errHandler');
 const userSchema = require('./schemas/userSchema');
+const supplySchema = require('./schemas/supplySchema');
 
 const userEntitiesVdt = (newUser) => {
   const { error } = userSchema.validate(newUser);
@@ -12,7 +13,8 @@ const userAlreadyExists = (user) => {
 
 const userKeysVdt = (logsKeys, user) => {
   if (!user) throw errHandler(404, 'Usuário não encontrado.')
-  if (logsKeys.password != user.password) throw errHandler(404, 'Email & password doesnt match.');
+  if (logsKeys.password != user.password) throw errHandler(
+    404, 'Email & password doesnt match.');
 }
 
 const tokenVdt = (token) => {
@@ -20,7 +22,13 @@ const tokenVdt = (token) => {
 }
 
 const firstInVdt = (hasFirstIn) => {
-  console.log(hasFirstIn);
+  if (hasFirstIn) throw errHandler(409,
+    `Primeira interação já realizada para este usuário. At _id: ${hasFirstIn._id}`);
+}
+
+const supplyPayloadVdt = (supplyPayload) => {
+  const { error } = supplySchema.validate(supplyPayload);
+  if (error) throw errHandler(404, error.message);
 }
 
 module.exports = {
@@ -29,4 +37,5 @@ module.exports = {
   userKeysVdt,
   tokenVdt,
   firstInVdt,
+  supplyPayloadVdt,
 };

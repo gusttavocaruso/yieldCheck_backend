@@ -28,8 +28,7 @@ const searchByOwner = async ({ email }) => {
   const db = await connect();
   const owner = await db
     .collection('users-yield')
-    .findOne({ owner: { email } })
-  console.log(owner);
+    .findOne({ 'owner.email': email })
   return owner;
 }
 

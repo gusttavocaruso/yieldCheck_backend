@@ -37,7 +37,7 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
 
 A API possui os seguintes endpoints que devem ser acessados conforme segue:
 
-**`http://localhost:3001/account/sign-up` - requisição HTTP `POST`**:
+**http://localhost:3001/account/sign-up - requisição HTTP `POST`**:
   - Deve receber um JSON no formato
 
 ```json
@@ -49,7 +49,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
 ```
 ---
 
-**`http://localhost:3001/account/sign-in` - requisição HTTP `POST`**:
+**http://localhost:3001/account/sign-in - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -61,7 +61,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota gera um Token JWT.
 ---
 
-**`http://localhost:3001/supply/first-setup` - requisição HTTP `POST`**:
+**http://localhost:3001/supply/first-setup - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -74,7 +74,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota retorna um `_id` referente a interação - será utilizado na rota PUT `/supply/:id`;
 ---
 
-**`http://localhost:3001/supply/:id` - requisição HTTP `PUT`**:
+**http://localhost:3001/supply/:id - requisição HTTP `PUT`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -87,7 +87,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Campo :id deve conter o id referente a interação gerado na resposta de requisição POST `/supply/first-setup`
 ---
 
-**`http://localhost:3001/supply/current-status` - requisição HTTP `GET`**:
+**http://localhost:3001/supply/current-status - requisição HTTP `GET`**:
   - Essa rota retorna o rendimento atual (média e histórico) para usuário autenticado (logado).
   - Retornará um json no formato:
 

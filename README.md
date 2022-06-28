@@ -21,7 +21,7 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
 
     _A primeira interação não fornece retorno, apenas faz o registro dos valores._
 
-  - Agora, utilize a rota PUT `/supply/:id` para os seguintes registros;
+  - Agora, utilize a rota PUT `/supply/:id` para os próximos registros futuros;
 
     Ex: Fui novamente abastecer meu carro. Agora o odômetro está marcando 98km rodados. Coloquei novamente R$ 50,00 de gasolina (8 litros)
 

@@ -1,10 +1,10 @@
-const { firstInService, inputService, calcYield } = require('../services/userInService');
+const service = require('../services/supplyService');
 
 const firstIn = async (req, res, next) => {
   try {
     const supplyPayload = req.body;
     const token = req.user;
-    const id = await firstInService(supplyPayload, token);
+    const id = await service.firstInService(supplyPayload, token);
 
     return res.status(201).json({
       message: `Primeira interação realizada para ${token.email}`,
@@ -20,7 +20,7 @@ const newInputs = async (req, res, next) => {
   try {
     const id = req.params;
     const supplyPayload = req.body;
-    const input = await inputService(id, supplyPayload);
+    const input = await service.inputService(id, supplyPayload);
 
     return res.status(200).json({
       message: `O rendimento atual (${input.at}) é de ${input.kmPerL} KM/L`
@@ -34,7 +34,7 @@ const newInputs = async (req, res, next) => {
 const currentStatus = async (req, res, next) => {
   try {
     const token = req.user;
-    const currentYield = await calcYield(token);
+    const currentYield = await service.getAverageNStoryYield(token);
 
     return res.status(200).json({ Usuário: token.email, currentYield });
   } catch (error) {

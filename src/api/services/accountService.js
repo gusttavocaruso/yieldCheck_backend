@@ -1,4 +1,4 @@
-const model = require('../model/signInUpModel');
+const model = require('../model/accountModel');
 const { tokenGenerate } = require('../utils/tokenService');
 const validate = require('../utils/validations');
 

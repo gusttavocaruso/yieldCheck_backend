@@ -2,9 +2,8 @@
 
 ## yieldCheck
 
-<img src="./img/bombagun2.svg" width="180px">
-
-<img src="./img/bombagun2_2.png" width="180px">
+<img src="./src/img/bombagun2.svg" width="180px">
+<img src="./src/img/bombagun2_2.png" width="180px">
 
 Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, Motos, ou afins a partir da interação simples do usuário informando quilometragem atual e litros abastecidos.
 

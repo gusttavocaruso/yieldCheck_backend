@@ -1,4 +1,4 @@
-const service = require('../services/signInUpService');
+const service = require('../services/accountService');
 
 const register = async (req, res, next) => {
   try {

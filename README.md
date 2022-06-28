@@ -1,17 +1,17 @@
 <div align="center">
 
-## yieldCheck
+# yieldCheck
 
-<img src="./src/img/bombagun2.svg" width="180px">
-<img src="./src/img/bombagun2_2.png" width="180px">
+<img src="./src/img/bombagun2.svg" width="150px">
+<img src="./src/img/bombagun2_2.png" width="150px">
 
 Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, Motos, ou afins a partir da interação simples do usuário informando quilometragem atual e litros abastecidos.
 
 </div>
 
 ## Para calcular rendimento
-  - Crie uma conta;
-  - Faça login;
+  - Crie uma conta na rota POST `/account/sign-up`;
+  - Faça login na rota POST `/account/sign-in`;
   - Realize o primeiro registro na rota POST `/supply/first-setup`;
 
     Ex: Fui abastecer meu carro e no odômetro está marcando 23km rodados.
@@ -29,7 +29,7 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
 
   - Essa interação retornará o rendimento em KM/L atual;
 
-  - Através da rota GET `/current-status` é possível consultar o histórico de registros de rendimento e a média desses registros;
+  - Através da rota GET `/supply/current-status` é possível consultar o histórico de registros de rendimento e a média desses registros;
 
 ---
 
@@ -37,7 +37,7 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
 
 A API possui os seguintes endpoints que devem ser acessados conforme segue:
 
-**http://localhost:3001/sign-up - requisição HTTP `POST`**:
+**`http://localhost:3001/account/sign-up` - requisição HTTP `POST`**:
   - Deve receber um JSON no formato
 
 ```json
@@ -49,7 +49,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
 ```
 ---
 
-**http://localhost:3001/sign - requisição HTTP `POST`**:
+**`http://localhost:3001/account/sign-in` - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -61,7 +61,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota gera um Token JWT.
 ---
 
-**http://localhost:3001`/supply/first-setup` - requisição HTTP `POST`**:
+**`http://localhost:3001/supply/first-setup` - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -74,7 +74,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota retorna um `_id` referente a interação - será utilizado na rota PUT `/supply/:id`;
 ---
 
-**http://localhost:3001`/supply/:id` - requisição HTTP `PUT`**:
+**`http://localhost:3001/supply/:id` - requisição HTTP `PUT`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -87,7 +87,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Campo :id deve conter o id referente a interação gerado na resposta de requisição POST `/supply/first-setup`
 ---
 
-**http://localhost:3001/current-status - requisição HTTP `GET`**:
+**`http://localhost:3001/supply/current-status` - requisição HTTP `GET`**:
   - Essa rota retorna o rendimento atual (média e histórico) para usuário autenticado (logado).
   - Retornará um json no formato:
 
@@ -110,3 +110,15 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   }
 ```
   - Essa rota demanda autenticação JWT para acesso.
+
+---
+
+<div align="center">
+
+um projeto idealizado e desenvolvido por
+
+<img src="https://i.postimg.cc/NfL4FSSP/IMG-8396.jpg" width="60px">
+
+Gustavo Caruso ©
+
+</div>

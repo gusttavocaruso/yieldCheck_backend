@@ -12,6 +12,6 @@ router.post('/sign-in', login);
 
 router.post('/supply/first-setup', auth, firstIn);
 router.put('/supply/:id', auth, newInputs);
-router.get('/current-status/:id', auth, currentStatus);
+router.get('/current-status', auth, currentStatus);
 
 module.exports = router;

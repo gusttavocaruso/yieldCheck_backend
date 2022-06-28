@@ -20,19 +20,22 @@ const inputService = async (id, supplyPayload) => {
   const deltaKM = actualKM - previousKM;
   const kmPerL = Math.round(deltaKM / previousL *100)/100;
 
-  await model.updateData(id, previousSupply, supplyPayload, kmPerL);
-  return kmPerL;
+  const at = new Date(Date.now()).toLocaleDateString();
+
+  await model.updateData(id, previousSupply, supplyPayload, kmPerL, at);
+  return { kmPerL, at };
 };
 
-const calcYield = async (id) => {
-  const { storyKM } = await model.searchById(id);
+const calcYield = async (token) => {
+  const { kmPerLStory } = await model.searchByOwner(token);
+  const storyKM = kmPerLStory.map((item) => item.kmPerL)
 
   const average = `${
     Math.round(storyKM.reduce((acc, km) => acc + km)
     / storyKM.length *100)/100
   } KM/L`;
 
-  return { average, storyKM };
+  return { average, kmPerLStory };
 };
 
 module.exports = {

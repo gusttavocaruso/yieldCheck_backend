@@ -10,7 +10,7 @@ const firstKMRegister = async (bodyPayload, token) => {
       ...bodyPayload,
       previousKM: 0,
       previousL: 0,
-      storyKM: []
+      kmPerLStory: []
     });
 
   return insertedId;
@@ -32,7 +32,7 @@ const searchByOwner = async ({ email }) => {
   return owner;
 }
 
-const updateData = async (id, previousSupply, newSupply, kmPerL) => {
+const updateData = async (id, previousSupply, newSupply, kmPerL, at) => {
   const db = await connect();
   await db.collection('users-yield')
     .updateOne(
@@ -44,7 +44,7 @@ const updateData = async (id, previousSupply, newSupply, kmPerL) => {
           previousKM: previousSupply.odometerKM,
           previousL: previousSupply.litersProvided,
         },
-        $push: { storyKM: kmPerL },
+        $push: { kmPerLStory: { kmPerL, at } },
       }
     );
 };

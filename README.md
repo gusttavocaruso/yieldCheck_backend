@@ -2,8 +2,8 @@
 
 ## yieldCheck
 
-<img src="./img/bombagun2.svg" width="200px">
-<img src="./img/bombagun2_2.png" width="200px">
+<img src="./img/bombagun2.svg" width="180px">
+<img src="./img/bombagun2_2.png" width="180px">
 
 Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, Motos, ou afins a partir da interação simples do usuário informando quilometragem atual e litros abastecidos.
 
@@ -43,6 +43,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
     "password": "String"
   }
 ```
+---
 
 **http://localhost:3001/sign - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
@@ -54,6 +55,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   }
 ```
   - Essa rota gera um Token JWT.
+---
 
 **http://localhost:3001`/supply/first-setup` - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
@@ -65,9 +67,10 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   }
 ```
   - Essa rota demanda autenticação JWT para acesso.
+  - Essa rota retorna um `_id` referente a interação - será utilizado na rota PUT `/supply/:id`;
+---
 
-**http://localhost:3001/supply/:id - requisição HTTP `PUT`**:
-  - Campo :id deve conter o id gerado na resposta de requisição `POST` feita para rota `/supply/first-setup`
+**http://localhost:3001`/supply/:id` - requisição HTTP `PUT`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -77,7 +80,29 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   }
 ```
   - Essa rota demanda autenticação JWT para acesso.
+  - Campo :id deve conter o id referente a interação gerado na resposta de requisição POST `/supply/first-setup`
+---
 
-**http://localhost:3001/current-status/:id - requisição HTTP `GET`**:
-  - Campo :id deve conter o id gerado na resposta de requisição `POST` feita para rota `/supply/first-setup`
+**http://localhost:3001/current-status - requisição HTTP `GET`**:
+  - Essa rota retorna o rendimento atual (média e histórico) para usuário autenticado (logado).
+  - Retornará um json no formato:
+
+```json
+  {
+    "Usuário": "formatode@email.com",
+    "currentYield": {
+      "average": "9.4 KM/L",
+      "kmPerLStory": [
+        {
+          "kmPerL": 8,
+          "at": "01/01/2023"
+        },
+        {
+          "kmPerL": 10.8,
+          "at": "07/01/2023"
+        }
+      ]
+    }
+  }
+```
   - Essa rota demanda autenticação JWT para acesso.

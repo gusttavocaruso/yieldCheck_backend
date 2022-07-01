@@ -30,7 +30,6 @@ Se atente para os endpoints que necessitam autenticação via Token JWT.
 
     Ex: Fui abastecer meu carro e no odômetro está marcando 23km rodados.
     Coloquei R$ 50,00 de gasolina (8,33 litros)
-
     portanto, o body deve receber: `{ odometerKM: 23 litersProvided: 8,33 }`
 
     _A primeira interação não fornece retorno, apenas faz o registro dos valores._
@@ -38,7 +37,6 @@ Se atente para os endpoints que necessitam autenticação via Token JWT.
   - Agora, utilize a rota PUT `/supply/:id` para os próximos registros futuros;
 
     Ex: Fui novamente abastecer meu carro. Agora o odômetro está marcando 98km rodados. Coloquei novamente R$ 50,00 de gasolina
-
     portanto: `{ odometerKM: 98, literProvided: 8,33 }`
 
   - Essa interação retornará o rendimento em KM/L atual;
@@ -63,6 +61,7 @@ As rotas disponíveis são:
     "password": "String"
   }
 ```
+  - A rota deve retornar o usuário adicionado ao banco com seu respectivo _id, nome e email.
 ---
 
 **/account/sign-in - requisição HTTP `POST`**:
@@ -74,7 +73,7 @@ As rotas disponíveis são:
     "password": "String"
   }
 ```
-  - Essa rota gera um Token JWT.
+  - Essa rota deve retornar um Token JWT.
 ---
 
 **/supply/first-setup - requisição HTTP `POST`**:

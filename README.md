@@ -5,9 +5,23 @@
 <img src="./src/img/bombagun2.svg" width="150px">
 <img src="./src/img/bombagun2_2.png" width="150px">
 
-Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, Motos, ou afins a partir da interação simples do usuário informando quilometragem atual e litros abastecidos.
+API capaz de calcular o rendimento (quilômetros por litro) de Carros, Motos, ou afins a partir da interação simples do usuário informando quilometragem atual e litros abastecidos.
 
 </div>
+
+---
+
+## API infos:
+
+Hospedada na plataforma <a href="https://www.heroku.com/" target="_blank">HEROKU</a>. Pode ser acessada através <a href="https://yield-check-back.herokuapp.com/" target="_blank">DESTE LINK</a>
+
+O Banco de dados utilizado é o banco noSQL <a target="_blank" href="https://www.mongodb.com/">MongoDB</a> e está hospedado no <a target="_blank" href="https://cloud.mongodb.com/">MongoCloud Atlas</a>
+
+**Para acessar as rotas utilize um client como <a target="_blank" href="https://insomnia.rest/">Insomnia</a>, <a target="_blank" href="https://www.postman.com/">Postman</a> ou similar.**
+
+Se atente para os endpoints que necessitam autenticação via Token JWT.
+
+---
 
 ## Para calcular rendimento
   - Crie uma conta na rota POST `/account/sign-up`;
@@ -17,15 +31,15 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
     Ex: Fui abastecer meu carro e no odômetro está marcando 23km rodados.
     Coloquei R$ 50,00 de gasolina (8,33 litros)
 
-    portanto: { odometerKM: 23 litersProvided: 8,33 }
+    portanto, o body deve receber: `{ odometerKM: 23 litersProvided: 8,33 }`
 
     _A primeira interação não fornece retorno, apenas faz o registro dos valores._
 
   - Agora, utilize a rota PUT `/supply/:id` para os próximos registros futuros;
 
-    Ex: Fui novamente abastecer meu carro. Agora o odômetro está marcando 98km rodados. Coloquei novamente R$ 50,00 de gasolina (8 litros)
+    Ex: Fui novamente abastecer meu carro. Agora o odômetro está marcando 98km rodados. Coloquei novamente R$ 50,00 de gasolina
 
-    portanto: { odometerKM: 98, literProvided: 8 }
+    portanto: `{ odometerKM: 98, literProvided: 8,33 }`
 
   - Essa interação retornará o rendimento em KM/L atual;
 
@@ -35,9 +49,11 @@ Essa API é capaz de calcular o rendimento (quilômetros por litro) de Carros, M
 
 ## Informações para consumo da API
 
-A API possui os seguintes endpoints que devem ser acessados conforme segue:
+Para testar as rotas você pode utilizar a API hospedada no Heroku ou clonar o projeto para sua maquina, instalar as dependencias via `npm install` e rodar a API com o comando `npm run dev`, assim ela ficará disponível na porta `:3001`
 
-**http://localhost:3001/account/sign-up - requisição HTTP `POST`**:
+As rotas disponíveis são:
+
+**/account/sign-up - requisição HTTP `POST`**:
   - Deve receber um JSON no formato
 
 ```json
@@ -49,7 +65,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
 ```
 ---
 
-**http://localhost:3001/account/sign-in - requisição HTTP `POST`**:
+**/account/sign-in - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -61,7 +77,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota gera um Token JWT.
 ---
 
-**http://localhost:3001/supply/first-setup - requisição HTTP `POST`**:
+**/supply/first-setup - requisição HTTP `POST`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -74,7 +90,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Essa rota retorna um `_id` referente a interação - será utilizado na rota PUT `/supply/:id`;
 ---
 
-**http://localhost:3001/supply/:id - requisição HTTP `PUT`**:
+**/supply/:id - requisição HTTP `PUT`**:
   - Deve receber um JSON no formato:
 
 ```json
@@ -87,7 +103,7 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
   - Campo :id deve conter o id referente a interação gerado na resposta de requisição POST `/supply/first-setup`
 ---
 
-**http://localhost:3001/supply/current-status - requisição HTTP `GET`**:
+**/supply/current-status - requisição HTTP `GET`**:
   - Essa rota retorna o rendimento atual (média e histórico) para usuário autenticado (logado).
   - Retornará um json no formato:
 
@@ -115,10 +131,18 @@ A API possui os seguintes endpoints que devem ser acessados conforme segue:
 
 <div align="center">
 
-um projeto idealizado e desenvolvido por
+Pretende-se criar um front-end que consumirá essa API.
 
-<img src="https://i.postimg.cc/NfL4FSSP/IMG-8396.jpg" width="60px">
+Issues, sugestões, feedbacks, CR e PR são bem vindos.
 
-Gustavo Caruso ©
+#
+
+_Idealizado e desenvolvido por_
+
+<img src="https://i.postimg.cc/NfL4FSSP/IMG-8396.jpg" width="50px">
+
+_Gustavo Caruso_ ©
+
+gustavoalmeida26@hotmail.com
 
 </div>

@@ -7,8 +7,8 @@ module.exports = (_req, res, _next) => {
       <br><br><br><br>
 
       <a href="https://github.com/gusttavocaruso/yieldCheck_backend">
-        <img width="150px" src="https://raw.githubusercontent.com/gusttavocaruso/yieldCheck_backend/master/img/bombagun2.svg" />
-        <img width="150px" src="https://raw.githubusercontent.com/gusttavocaruso/yieldCheck_backend/master/img/bombagun2_2.png" />
+        <img width="120px" src="https://svgsilh.com/svg/160119.svg" />
+        <img width="120px" src="https://svgsilh.com/svg/1293076.svg" />
       </a>
 
       <br><br>
